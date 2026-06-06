@@ -2,15 +2,19 @@ import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from fastembed import TextEmbedding
+import cohere
 from pinecone import Pinecone
 import config
 
-embedding_model = TextEmbedding("BAAI/bge-small-en-v1.5")
+co = cohere.Client(api_key=config.COHERE_API_KEY)
 
 def embed_texts(texts: list[str]) -> list[list[float]]:
-    embeddings = list(embedding_model.embed(texts))
-    return [e.tolist() for e in embeddings]
+    response = co.embed(
+        texts=texts,
+        model="embed-english-v3.0",
+        input_type="search_document"
+    )
+    return response.embeddings
 
 def store_chunks(chunks):
     pc = Pinecone(api_key=config.PINECONE_API_KEY)
@@ -34,7 +38,7 @@ def store_chunks(chunks):
         index.upsert(vectors=vectors)
         print(f"Stored chunks {i} to {i+len(batch)}")
 
-    print("All chunks stored in Pinecone!")
+    print("\nAll chunks stored in Pinecone!")
 
 if __name__ == "__main__":
     from ingestion import load_and_chunk_pdf

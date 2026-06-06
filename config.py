@@ -7,6 +7,9 @@ load_dotenv()
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 GROQ_MODEL   = "llama3-8b-8192"
 
+COHERE_API_KEY = os.getenv("COHERE_API_KEY")
+PINECONE_DIMENSION = 1024 
+    
 # Pinecone
 PINECONE_API_KEY    = os.getenv("PINECONE_API_KEY")
 PINECONE_INDEX_NAME = "rag-book-index"

@@ -18,4 +18,4 @@ CHUNK_OVERLAP = 50
 TOP_K         = 4
 
 # PDF
-PDF_PATH = "data/andrew_ng_ml_yearning.pdf"
+PDF_PATH = "data/machine-learning-yearning.pdf"

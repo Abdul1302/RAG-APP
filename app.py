@@ -7,7 +7,7 @@ from retriever import retrieve_chunks
 from generator import generate_answer
 
 st.set_page_config(page_title="RAG - ML Yearning", page_icon="📚")
-st.title("📚 Machine Learning Yearning — Q&A")
+st.title("Machine Learning Yearning — Q&A")
 
 # Chat history initialize 
 if "messages" not in st.session_state:

@@ -20,11 +20,11 @@ Context from the book:
 
     messages = [{"role": "system", "content": system_prompt}]
     
-    # Chat history add karo
+    # Chat history addition
     for msg in chat_history:
         messages.append(msg)
     
-    # Current question add karo
+    # Current question addition
     messages.append({"role": "user", "content": query})
 
     response = client.chat.completions.create(
